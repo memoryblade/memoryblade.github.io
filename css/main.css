@@ -3004,3 +3004,15 @@ ul.breadcrumb li+li:last-child {
     text-align: justify;
   }
 }
+
+.post-toc .nav .nav-level-1>.nav-child { 
+    display: block; 
+}
+
+.post-toc .nav .nav-level-2>.nav-child { 
+    display: block; 
+}
+
+.post-toc .nav .nav-level-3>.nav-child { 
+    display: block; 
+}
