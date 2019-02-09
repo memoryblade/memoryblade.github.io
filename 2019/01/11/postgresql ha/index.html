@@ -95,13 +95,14 @@
 
 
   <meta name="description" content="postgresql 基础请将 pgsql/bin 加入PATH环境变量 pg_hba.conf 配置可参考：https://www.cnblogs.com/flying-tiger/p/5983588.html12345678TYPE       DATABASE  USER  ADDRESS                 METHODlocal      database  user  au">
+<meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="postgresql ha">
 <meta property="og:url" content="https://w2yh.cc/2019/01/11/postgresql ha/index.html">
 <meta property="og:site_name" content="Memoryblade&#39;s site">
 <meta property="og:description" content="postgresql 基础请将 pgsql/bin 加入PATH环境变量 pg_hba.conf 配置可参考：https://www.cnblogs.com/flying-tiger/p/5983588.html12345678TYPE       DATABASE  USER  ADDRESS                 METHODlocal      database  user  au">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-17T13:21:51.788Z">
+<meta property="og:updated_time" content="2019-02-09T05:34:47.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="postgresql ha">
 <meta name="twitter:description" content="postgresql 基础请将 pgsql/bin 加入PATH环境变量 pg_hba.conf 配置可参考：https://www.cnblogs.com/flying-tiger/p/5983588.html12345678TYPE       DATABASE  USER  ADDRESS                 METHODlocal      database  user  au">
@@ -356,7 +357,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-01-17 21:21:51" itemprop="dateModified" datetime="2019-01-17T21:21:51+08:00">2019-01-17</time>
+                <time title="Modified: 2019-02-09 13:34:47" itemprop="dateModified" datetime="2019-02-09T13:34:47+08:00">2019-02-09</time>
               
             
           </span>
@@ -394,6 +395,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 示例</span><br><span class="line">local   all             all                                     md5</span><br><span class="line">host    all             all             172.22.30.190/32        md5</span><br></pre></td></tr></table></figure>
 <p>###postgresql.conf配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="用户角色权限"><a href="#用户角色权限" class="headerlink" title="用户角色权限"></a>用户角色权限</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER name [ [ WITH ] option [ ... ] ]</span><br><span class="line"></span><br><span class="line">where option can be:</span><br><span class="line">    </span><br><span class="line">      SUPERUSER | NOSUPERUSER</span><br><span class="line">    | CREATEDB | NOCREATEDB</span><br><span class="line">    | CREATEROLE | NOCREATEROLE</span><br><span class="line">    | CREATEUSER | NOCREATEUSER</span><br><span class="line">    # NOINHERIT 顶级ROLE，不能再去继承别人</span><br><span class="line">    # INHERIT 可以去继承别人的权限</span><br><span class="line">    | INHERIT | NOINHERIT</span><br><span class="line">    | LOGIN | NOLOGIN</span><br><span class="line">    | CONNECTION LIMIT connlimit</span><br><span class="line">    | PASSWORD 'password'</span><br><span class="line">    | VALID UNTIL 'timestamp' </span><br><span class="line">    | IN ROLE role_name [, ...]</span><br><span class="line">    | IN GROUP role_name [, ...]</span><br><span class="line">    | ROLE role_name [, ...]</span><br><span class="line">    | ADMIN role_name [, ...]</span><br><span class="line">    | USER role_name [, ...]</span><br><span class="line">    | SYSID uid </span><br><span class="line"></span><br><span class="line">CREATE USER db_test LOGIN PASSWORD 'hnaDtnIqIJfTZTaJ'</span><br><span class="line"><span class="meta">#</span> CREATE USER 和 CREATE ROLE 的区别在于：create user 是默认带 login 的，而 role 是默认 nologin</span><br><span class="line"><span class="meta">#</span> 赋予 role 权限</span><br><span class="line">CREATE USER son2 INHERIT password 'abc123' in role father;</span><br><span class="line">GRANT father to son2;</span><br><span class="line"><span class="meta">#</span> 修改角色权限</span><br><span class="line"> ALTER ROLE postgres  password '****';</span><br></pre></td></tr></table></figure>
 <h3 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 列举数据库</span><br><span class="line">\l</span><br><span class="line"><span class="meta">#</span> 切换数据库</span><br><span class="line">\c dbname</span><br><span class="line"><span class="meta">#</span> 列举数据表</span><br><span class="line">\dt</span><br><span class="line"><span class="meta">#</span> 查看表权限</span><br><span class="line">=&gt; \dp mytable | \z</span><br><span class="line">                              Access privileges</span><br><span class="line"> Schema |  Name   | Type  |   Access privileges   | Column access privileges </span><br><span class="line">--------+---------+-------+-----------------------+--------------------------</span><br><span class="line"> public | mytable | table | miriam=arwdDxt/miriam | col1:</span><br><span class="line">                          : =r/miriam             :   miriam_rw=rw/miriam</span><br><span class="line">                          : admin=arw/miriam </span><br><span class="line"><span class="meta">#</span> 具体的 Access privileges 解释</span><br><span class="line"> rolename=xxxx -- privileges granted to a role</span><br><span class="line">         =xxxx -- privileges granted to PUBLIC</span><br><span class="line"></span><br><span class="line">            r -- SELECT ("read")</span><br><span class="line">            w -- UPDATE ("write")</span><br><span class="line">            a -- INSERT ("append")</span><br><span class="line">            d -- DELETE</span><br><span class="line">            D -- TRUNCATE</span><br><span class="line">            x -- REFERENCES</span><br><span class="line">            t -- TRIGGER</span><br><span class="line">            X -- EXECUTE</span><br><span class="line">            U -- USAGE</span><br><span class="line">            C -- CREATE</span><br><span class="line">            c -- CONNECT</span><br><span class="line">            T -- TEMPORARY</span><br><span class="line">      arwdDxt -- ALL PRIVILEGES (for tables, varies for other objects)</span><br><span class="line">            * -- grant option for preceding privilege</span><br><span class="line"></span><br><span class="line">        /yyyy -- role that granted this privilege</span><br></pre></td></tr></table></figure>
 <h3 id="schema"><a href="#schema" class="headerlink" title="schema"></a>schema</h3><p>schema 相当于一个命名空间<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 创建 schema</span><br><span class="line">create schema s02</span><br><span class="line"><span class="meta">#</span> 创建 schema 指定用户</span><br><span class="line">create schema s02 authorization db_test;</span><br><span class="line"><span class="meta">#</span> 查看所有 schema</span><br><span class="line">\dn</span><br><span class="line"><span class="meta">#</span> 赋予权限</span><br><span class="line">grant create on schema zzz to brent;</span><br><span class="line">grant usage on schema zzz to brent;</span><br><span class="line">grant all on schema zzz to brent;</span><br></pre></td></tr></table></figure></p>
@@ -428,11 +430,33 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/database/" rel="tag"># database</a>
+          
+        </div>
+      
 
       
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/09/微观经济学笔记/" rel="prev" title="微观经济学笔记">
+                微观经济学笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -503,7 +527,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -511,6 +535,21 @@
 
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
