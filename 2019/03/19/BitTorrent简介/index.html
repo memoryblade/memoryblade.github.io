@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="历史2001, Bram Cohen, BitTorrent2003, Red Hat Linux 9 发布，服务器挤爆，3天交换了21150GB的数据国内，网络蚂蚁、网际快车 BitTorrent由BitTorrent Community Forum进行维护，相关协议称为BEP(BitTorrent Enhancement Proposals)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BitTorrent简介">
+<meta property="og:url" content="https://w2yh.cc/2019/03/19/BitTorrent简介/index.html">
+<meta property="og:site_name" content="Memoryblade&#39;s site">
+<meta property="og:description" content="历史2001, Bram Cohen, BitTorrent2003, Red Hat Linux 9 发布，服务器挤爆，3天交换了21150GB的数据国内，网络蚂蚁、网际快车 BitTorrent由BitTorrent Community Forum进行维护，相关协议称为BEP(BitTorrent Enhancement Proposals)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/989ea82cjw1exbqr9xl1ij208c06ot8o.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/989ea82cjw1exbqr9r8k4j20g40abgou.jpg">
+<meta property="og:image" content="https://w2yh.cc/Users/yuzhiyuan/Library/Application%20Support/typora-user-images/image-20190319105137928.png">
+<meta property="og:updated_time" content="2019-03-19T09:00:38.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BitTorrent简介">
+<meta name="twitter:description" content="历史2001, Bram Cohen, BitTorrent2003, Red Hat Linux 9 发布，服务器挤爆，3天交换了21150GB的数据国内，网络蚂蚁、网际快车 BitTorrent由BitTorrent Community Forum进行维护，相关协议称为BEP(BitTorrent Enhancement Proposals)">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/989ea82cjw1exbqr9xl1ij208c06ot8o.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://w2yh.cc/2019/03/19/BitTorrent简介/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>BitTorrent简介 | Memoryblade's site</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?861ad0362a709d5e192992b54a389628";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Memoryblade's site</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://w2yh.cc/2019/03/19/BitTorrent简介/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="memoryblade">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Memoryblade's site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BitTorrent简介
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-19 16:58:31 / Modified: 17:00:38" itemprop="dateCreated datePublished" datetime="2019-03-19T16:58:31+08:00">2019-03-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><p>2001, Bram Cohen, BitTorrent<br><img src="http://ww2.sinaimg.cn/large/989ea82cjw1exbqr9xl1ij208c06ot8o.jpg" alt=""><br>2003, Red Hat Linux 9 发布，服务器挤爆，3天交换了21150GB的数据<br>国内，网络蚂蚁、网际快车<br><img src="http://ww2.sinaimg.cn/large/989ea82cjw1exbqr9r8k4j20g40abgou.jpg" alt=""></p>
+<p>BitTorrent由<a href="http://bittorrent.org/" target="_blank" rel="noopener"><em>BitTorrent Community Forum</em></a>进行维护，相关协议称为BEP(BitTorrent Enhancement Proposals)</p>
+<a id="more"></a>
+<h1 id="BitTorrent协议"><a href="#BitTorrent协议" class="headerlink" title="BitTorrent协议"></a>BitTorrent协议</h1><p><img src="/Users/yuzhiyuan/Library/Application Support/typora-user-images/image-20190319105137928.png" alt="image-20190319105137928"></p>
+<h2 id="实体组成"><a href="#实体组成" class="headerlink" title="实体组成"></a>实体组成</h2><ul>
+<li>一个静态的 ‘metainfo’ 文件(torrent种子文件)</li>
+<li>一个 BitTorrent tracker</li>
+<li>一个 ‘原始的’ 下载者</li>
+<li>终端用户下载者</li>
+</ul>
+<h2 id="bencoding"><a href="#bencoding" class="headerlink" title="bencoding"></a>bencoding</h2><ul>
+<li>字符串<br>十进制的长度前缀 + 冒号 + 字符串本身<br>例如：4:spam</li>
+<li>整数<br>i + 十进制数字 + e<br>例如：i3e, i-3e, i0e</li>
+<li>列表<br>l + 元素 + e<br>例如：l4:spam4:eggsi3ee 代表 [‘spam’, ‘eggs’, 3]</li>
+<li>字典<br>d 后交替地跟着键和它们的对应值，然后是 e 字符表示结束<br>例如：<br>d3:cow3:moo4:spam4:eggse 表示 {‘cow’: ‘moo’, ‘spam’: ‘eggs’}<br>d4:spaml1:a1:bee 表示 {‘spam’: [‘a’, ‘b’]}</li>
+</ul>
+<h2 id="torrent文件结构"><a href="#torrent文件结构" class="headerlink" title="torrent文件结构"></a>torrent文件结构</h2><p>解析torrent文件的工具</p>
+<ul>
+<li><a href="http://torrenteditor.com/" target="_blank" rel="noopener">http://torrenteditor.com/</a></li>
+<li><a href="https://github.com/effigies/BitTornado" target="_blank" rel="noopener">https://github.com/effigies/BitTornado</a> (python3 btshowmetainfo.py)</li>
+</ul>
+<p>文件结构<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"announce"</span>:<span class="string">"Tracker 的 URL"</span>,</span><br><span class="line">    <span class="attr">"announce-list"</span>:[</span><br><span class="line">        [<span class="string">"Tracker 的 URL2"</span>],</span><br><span class="line">        [<span class="string">"Tracker 的 URL3"</span>]</span><br><span class="line">    ]</span><br><span class="line">    <span class="string">"info"</span>:&#123;</span><br><span class="line">        <span class="attr">"name"</span>:<span class="string">"UTF-8 编码的字符串，建议的保存文件（或字典）时所采用的名字"</span>,</span><br><span class="line">        <span class="attr">"piece length"</span>:<span class="string">"文件分割后每个片的字节数，2的幂"</span>,</span><br><span class="line">        <span class="attr">"pieces"</span>:<span class="string">"长度是 20 的整数倍的字符串，每个都是对应 index 处的片的 SHA1 hash 值"</span>,</span><br><span class="line">        <span class="attr">"length"</span>:<span class="string">"文件的大小，以字节为单位（如果是文件列表，下面的files，则不会出现该字段）"</span>,</span><br><span class="line">        <span class="attr">"files"</span>:[</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"length"</span>:<span class="string">"单个文件的大小"</span>,</span><br><span class="line">                <span class="attr">"path"</span>:<span class="string">"单个文件名"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"length"</span>:<span class="string">"xxxx"</span>,</span><br><span class="line">                <span class="attr">"path"</span>:<span class="string">"xxxx"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="trackers"><a href="#trackers" class="headerlink" title="trackers"></a>trackers</h2><p>发起GET请求，请求字段如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">info_hash: torrent文件中info值的SHA1</span><br><span class="line">peer_id: 每个下载client的随机id</span><br><span class="line">ip: peer的ip地址</span><br><span class="line">port: peer监听端口</span><br><span class="line">uploaded: 到目前为止上传的数据量，以十进制 ascii 编码</span><br><span class="line">downloaded: 到目前为止下载的数据量，以十进制 ascii 编码</span><br><span class="line">left: 当前 Peer 仍然需要下载的字节数，以十进制 ascii 编码</span><br><span class="line">event: started，completed，或 stopped</span><br></pre></td></tr></table></figure></p>
+<p>tracker服务器返回的响应也是bencoding的，示例如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"failure reason"</span>:<span class="string">"xxx"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"interval"</span>:<span class="number">12345</span>,</span><br><span class="line">    <span class="attr">"peers"</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"peer id"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"ip"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"port"</span>:<span class="number">1234</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"peer id"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"ip"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"port"</span>:<span class="number">1234</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"peer id"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"ip"</span>:<span class="string">"xxxxxx"</span>,</span><br><span class="line">            <span class="attr">"port"</span>:<span class="number">1234</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="p2p"><a href="#p2p" class="headerlink" title="p2p"></a>p2p</h2><p>从Tracker服务器获取到 peers 列表后，会进行请求并维持跟每一个peer的连接状态</p>
+<p>连接在任一端包含两个状态位：</p>
+<ul>
+<li>阻塞或不阻塞(choke/unchoke)</li>
+<li>是否感兴趣(interested/uninterested)</li>
+</ul>
+<p>当且仅当一方 unchoke 且另一方 interested 的时候，才会进行数据传输<br>当 Peer 完成一个片的下载，并检查了哈希值的匹配性，它将向它所有的 Peers 通告它具有该片</p>
+<h3 id="p2p消息类型"><a href="#p2p消息类型" class="headerlink" title="p2p消息类型"></a>p2p消息类型</h3><ul>
+<li><p>handshake：连接 peer 间连接建立后发送的第一个消息，主要用于通告 info_hash 与 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| 19 (1) | &quot;BitTorrent protocol&quot; (19) | reserved_byte (8) | info_hash (20) | peer_id (20) |</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>keepalive</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| len (4) |</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>除基础消息外的其他消息均有固定的格式如下：消息体长度 + 类型 + 负载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| len (4) | type (1) | payload |</span><br></pre></td></tr></table></figure></p>
+<p>可能的类型值有：</p>
+<ul>
+<li><p>0 - choke</p>
+</li>
+<li><p>1 - unchoke</p>
+</li>
+<li><p>2 - interested</p>
+</li>
+<li><p>3 - not interested</p>
+</li>
+<li><p>4 - have<br>告诉对方某个piece已经成功下载并且通过hash校验</p>
+</li>
+<li><p>5 - bitfield<br>告诉对方我已经有的piece</p>
+</li>
+<li><p>6 - request：请求某个块(block)</p>
+<ul>
+<li>index: 整数，指定从零开始的piece索引</li>
+<li>begin: 整数，指定piece中从零开始的字节偏移</li>
+<li>length: 整数，指定请求的长度  </li>
+</ul>
+</li>
+<li><p>7 - piece：返回请求的块(block)的数据，是真正的资源信息</p>
+<ul>
+<li>index: 整数，指定从零开始的piece索引</li>
+<li>begin: 整数，指定piece中从零开始的字节偏移</li>
+<li>block: 数据块  </li>
+</ul>
+</li>
+<li><p>8 - cancel<br>消息除了类型和 request 消息不同外，其他均与 request 一致，用于向 peer 取消之前发出的 request 请求。这是由于为了加快最后若干分片的下载速度，客户端会启用 <strong>Endgame</strong> 模式，这个模式下，peer 会向所有的 peer 请求相同的分片片段，当 peer 从某个 peer 获得所需的分片片段后，需要向剩余的 peer 发送 cancel 消息以减少不必要的传输</p>
+</li>
+</ul>
+<p>其中 <code>choke</code>，<code>unchoke</code>，<code>interested</code>，和 <code>not interested</code> 没有载荷。</p>
+<h3 id="peer的来源"><a href="#peer的来源" class="headerlink" title="peer的来源"></a>peer的来源</h3><ol>
+<li><strong>Magnet</strong>：磁力连接中有 <strong>x.pe</strong> 参数可以预设一些 Peer；</li>
+<li><strong>Tracker</strong>：Tracker 服务器的作用就是提供 Peer；</li>
+<li><strong>Local Service Discovery</strong>（<a href="http://bittorrent.org/beps/bep_0014.html" target="_blank" rel="noopener">BEP14</a>）:通过对本地组播地址 <code>239.192.152.143:6771</code> 和 <code>[ff15::efc0:988f]:6771</code> 发出 info_hash 宣告来尝试获得响应，如果有响应，则添加为 Peer；</li>
+<li><strong>Peer Exchange</strong>：通过 Peer 间的 <strong>Peer Exchange</strong> 扩展消息来与其他 Peer 交换 Peer，后面会详细提到；</li>
+<li><strong>DHT</strong>：通过 DHT 网络获取；</li>
+</ol>
+<h1 id="BT中涉及到的策略"><a href="#BT中涉及到的策略" class="headerlink" title="BT中涉及到的策略"></a>BT中涉及到的策略</h1><h2 id="分片选择策略"><a href="#分片选择策略" class="headerlink" title="分片选择策略"></a>分片选择策略</h2><h3 id="Random-First-Piece（随机首分片）"><a href="#Random-First-Piece（随机首分片）" class="headerlink" title="Random First Piece（随机首分片）"></a>Random First Piece（随机首分片）</h3><p>当下载开始时， peer 没有分片可以用于上传，所以最重要的是尽快得到一个完整的分片。稀有的分片往往只被某一个 peer 拥有，从这个 peer 处下载这个分片（分成多个子片段）将会慢于从多个 peer 处下载相同分片的不同子片段。出于这个原因，刚开始下载时，会随机选择一个分片进行下载，随后策略转为稀有优先。</p>
+<h3 id="Rarest-First（稀有优先）"><a href="#Rarest-First（稀有优先）" class="headerlink" title="Rarest First（稀有优先）"></a>Rarest First（稀有优先）</h3><p>在选择接下来下载哪个分片时，peer 会选择最稀有的分片（自己没有这个分片，同时其他 peer 有，但是有这个分片的 peer 数量相对其他分片最少）进行下载。这个算法保证了不稀有的分片在之后仍然能被下载到，同时稀有的分片在逐渐变多。通过尽快复制最稀有的分片，减小了稀有分片在当前连接的 peer 中完全消失的可能性。</p>
+<h3 id="Strict-Priority（严格模式）"><a href="#Strict-Priority（严格模式）" class="headerlink" title="Strict Priority（严格模式）"></a>Strict Priority（严格模式）</h3><p>一旦请求了某个分片的子片段，那么就会在请求其他子片段之前请求该特定分片的剩余子片段，以尽量优先获得这个完整的分片。</p>
+<h3 id="Endgame-Mode"><a href="#Endgame-Mode" class="headerlink" title="Endgame Mode"></a>Endgame Mode</h3><p>有时从一个 peer 请求某个分片会很慢，这在下载整个资源你的中途不会是一个问题（因为中途同时发生不少请求），但是这种情况可能会影响最终的即将下载完成阶段。当所有剩余的子片段都已经在向其他 peer 请求时，它会同时向所有的 peer 请求这些子片段。当某一个 peer 返回了一个子片段，就向剩余的 peer 发送 cancel 消息以节约带宽。在实践过程中，Endgame 模式持续时间非常短，所以浪费的带宽不多，而且使得资源的最后一部分下载非常快。</p>
+<h2 id="choking算法"><a href="#choking算法" class="headerlink" title="choking算法"></a>choking算法</h2><p>BT 没有中心化的资源分配，每个 peer 都想最大化自己的下载速率，又希望更少的上传。</p>
+<p>这是一个囚徒困境，曾经有人为此举办过两次比赛，看谁的策略最好，最终胜出的是一个叫做“争锋相对”的算法(tit-for-tat)，这个算法策略很简单，一开始采用合作，假如对方上一轮合作，则本轮合作；如果对方上一轮对抗，则本轮对抗。</p>
+<p>为了解决tit-for-tat潜在的问题，BT做了相应的优化，以一定的概率去执行以牙还牙，但是也允许以一定的概率不管上次选什么，这次和对手选择合作。</p>
+<p>大致算法描述如下：</p>
+<ol>
+<li><strong>Choking Algorithm</strong>：每 T 时间选择合适的 k 个 peer 进行 unchoke，选择的标准为过去 S 时间 peer 的下载速率；</li>
+<li><strong>Optimistic Unchoking</strong>：每 nT 时间，随机选择一个 peer 进行 unchoke，以尝试发现更优质的 peer；</li>
+<li><strong>Anti-snubbing</strong>：如果 mT 时间内没有从某个 peer 处获取到一个分片，则认为被 <strong>snubbed</strong> 了，对其进行 choke；</li>
+<li><strong>Upload Only</strong>：当一个 peer 下载完成了，即成为了一个 seed，则只进行上传，不再下载。peer 会选择那些该 peer 对其有较高上传速率的 peer 进行上传。</li>
+</ol>
+<p>实际实现中 T = 10s, k = 7, S = 20s, n = 3, m = 6。</p>
+<h1 id="BT扩展"><a href="#BT扩展" class="headerlink" title="BT扩展"></a>BT扩展</h1><h2 id="磁力链接"><a href="#磁力链接" class="headerlink" title="磁力链接"></a>磁力链接</h2><h3 id="源起"><a href="#源起" class="headerlink" title="源起"></a>源起</h3><p>提到 Magnet（磁力链接）大家都会想到 BT，但是磁力链接不是因为 BT 而诞生的，也不止用于 BT，事实上磁力链接的来自 <a href="http://magnet-uri.sourceforge.net/" target="_blank" rel="noopener">MAGNET-URI Project</a> 这个项目：</p>
+<blockquote>
+<p>MAGNET is a work-in-progress URI specification, and collection of standard practices/implementing code to allow a website to seamlessly integrate with features made available by local utility programs. In one way, it could be thought of as a vendor- and project-neutral generalization of the “freenet:” and “ed2k:” URI-schemes used by the Freenet and EDonkey2000 peer-to-peer networks, respectively.</p>
+<p><strong>Gordon Mohr</strong>   <a href="http://magnet-uri.sourceforge.net/magnet-draft-overview.txt" target="_blank" rel="noopener">magnet-uri.sourceforge.net/magnet-draft-overview.txt</a></p>
+</blockquote>
+<p>磁力链接是一个统一的规范，它希望这种 p2p 的链接都可以以按照这个规范展示，这样的话当用户在网页上点击磁力链接的时候，就可以磁力链接的参数（<code>xt</code>，下文会提及）“召唤”合适的客户端。它先被 eDonkey（电驴）推动，电驴链接理论上可以被转换成磁力链接。转换过程大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ed2k://|file|&lt;name&gt;|&lt;file-size&gt;|&lt;ed2k-hash&gt;|/</span><br><span class="line">magnet:?xt=urn:ed2k:&lt;ed2k-hash&gt;&amp;xl=&lt;file-size&gt;&amp;dn=&lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>然而，这个 MAGNET-URI Project 后来应该没有被推动下去，导致甚至连电驴自己的客户端都没有支持 ed2k 的 magnet 格式。直到后来在 BT 中大放异彩，导致现在狭义上的磁力链接就是指 BT 中使用的磁力链接。</p>
+<h3 id="BT-中的磁力链接"><a href="#BT-中的磁力链接" class="headerlink" title="BT 中的磁力链接"></a>BT 中的磁力链接</h3><p>BT 中的磁力链接大概有这两种格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v1: magnet:?xt=urn:btih:&lt;info-hash&gt;&amp;dn=&lt;name&gt;&amp;tr=&lt;tracker-url&gt;&amp;x.pe=&lt;peer-address&gt;</span><br><span class="line">v2: magnet:?xt=urn:btmh:&lt;tagged-info-hash&gt;&amp;dn=&lt;name&gt;&amp;tr=&lt;tracker-url&gt;&amp;x.pe=&lt;peer-address&gt;</span><br></pre></td></tr></table></figure>
+<p>根据 <a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6" target="_blank" rel="noopener">URL 的定义</a>，<code>magnet</code> 前缀表示这个链接是磁力链接，<code>？</code> 后表示为 GET 模式查询参数列表，参数使用 <code>&amp;</code> 符号隔开。BT 磁力链接的参数如下:</p>
+<ul>
+<li><p>xt</p>
+<p>：表示包含文件散列函数值的 URN，这是唯一一个必选参数，可能的 URN 类型有：</p>
+<ul>
+<li><strong>btih</strong>：表示 Torrent 文件 info 部分的 SHA1 值，可以是 Hex 编码或者 Base32 编码形式。</li>
+<li><strong>btmh</strong>：表示 Torrent 文件 info 部分的 HEX 编码 <a href="https://github.com/multiformats/multihash" target="_blank" rel="noopener">multihash</a> 值，multihash 是由创造 IPFS 的 Protocal Lab 的项目，用于编码多种 hash 函数的 hash 结果。<strong>btmh 可以和 btih 同时存在，这个应该和 SHA1 被破解相关——有 btmh 中使用其他 hash 函数得到的 hash 值加上原来的 SHA1 值就可以做到兼容，同时检测碰撞。</strong></li>
+</ul>
+</li>
+<li><p><strong>dn</strong>：表示建议显示的文件名。</p>
+</li>
+<li><p><strong>tr</strong>：表示 Tracker的 URL，如果有多个 Tracker,则会有多个 <code>tr</code> 参数。</p>
+</li>
+<li><p><strong>x.pe</strong>：表示 Peer 的，格式为 <code>hostname:port</code>，<code>ipv4-literal:port</code> 或者 <code>[ipv6-literal]:port</code>，这些 peer 可以被添加到 peer 列表中用于获取元数据以及后续的文件片段获取。实际上 Magnet 链接中定义了一个通用的参数 <code>xt</code> 用于指定类似 <code>x.pe</code> 所表示的 p2p 连接，但是由于没有合适的 URI 标识符分配给 BT（比如电驴有 ed2k），所以 BT 使用了这个参数，而不是 <code>xt</code>。</p>
+</li>
+<li><p><strong>so</strong>：定义在 <a href="http://www.bittorrent.org/beps/bep_0053.html" target="_blank" rel="noopener">BEP53 - Magnet URI extension - Select specific file indices for download</a> 中，用于指定下载特定文件，比如 <code>so=0,2,4,6-8</code> 表示下载 files 列表中索引为 0,2,4,6,7,8 的这六个文件。</p>
+</li>
+</ul>
+<p>有了磁力链接，客户端就可以向 peer 请求 Torrent 文件的 info 部分了，获取完成后就相当于拥有了 Torrent 文件，也就是有了完整的元数据，继而可以下载资源。</p>
+<h2 id="DHT"><a href="#DHT" class="headerlink" title="DHT"></a>DHT</h2><h1 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h1><h2 id="电驴和eD2k"><a href="#电驴和eD2k" class="headerlink" title="电驴和eD2k"></a>电驴和eD2k</h2><ul>
+<li>2000年，MetaMachine公司开发了“eDonkey”（电驴），首次使用了eD2k构建eDonkey网络，仍然离不开中央服务器</li>
+<li>2002年，德国开发者不满足于eDonkey，开发出了支持eD2k协议的第三方开源客户端——eMule（电骡），支持KAD网络（更彻底的P2P共享网络，不需要中央服务器，和eDonkey网络互联，协议也是eD2k）</li>
+<li>2003年9月，国内开始流行，VeryCD电驴，基于eMule进行的二次开发</li>
+<li>2004年，eDonkey电驴由于版权方面的控诉停止开发，而eMule巍然不动</li>
+<li>2009年，中国加强了网络版权把控，VeryCD被迫转型</li>
+</ul>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><ul>
+<li>torrent编辑<br><a href="http://torrenteditor.com/" target="_blank" rel="noopener">http://torrenteditor.com/</a><br><a href="https://github.com/gerryferdinandus/bittorrent-tracker-editor" target="_blank" rel="noopener">https://github.com/gerryferdinandus/bittorrent-tracker-editor</a></li>
+</ul>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://github.com/atomashpolskiy/bt" target="_blank" rel="noopener">https://github.com/atomashpolskiy/bt</a></li>
+<li><a href="https://0ranga.com/2018/08/26/bt-overview/" target="_blank" rel="noopener">BT 增强建议</a></li>
+<li><a href="http://www.bittorrent.org/beps/bep_0000.html" target="_blank" rel="noopener">http://www.bittorrent.org/beps/bep_0000.html</a></li>
+<li><a href="https://www.jianshu.com/p/ad0eb1989ab0" target="_blank" rel="noopener">基础协议译文</a></li>
+<li><a href="http://azard.me/blog/2015/10/24/introduction-to-bittorrent/" target="_blank" rel="noopener">浅入浅出BitTorrent协议</a></li>
+<li><a href="https://www.chia.net/" target="_blank" rel="noopener">Bram Cohen正在参与的数字货币项目</a></li>
+<li><a href="https://blog.youxu.info/2008/12/31/tit-for-tac-and-p2p-software/" target="_blank" rel="noopener">P2P客户端的策略和奇妙的对策论</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/09/微观经济学笔记/" rel="next" title="微观经济学笔记">
+                <i class="fa fa-chevron-left"></i> 微观经济学笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">memoryblade</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/memoryblade" title="GitHub &rarr; https://github.com/memoryblade" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yzyuan6@gmail.com" title="E-Mail &rarr; mailto:yzyuan6@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#历史"><span class="nav-number">1.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BitTorrent协议"><span class="nav-number">2.</span> <span class="nav-text">BitTorrent协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实体组成"><span class="nav-number">2.1.</span> <span class="nav-text">实体组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bencoding"><span class="nav-number">2.2.</span> <span class="nav-text">bencoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#torrent文件结构"><span class="nav-number">2.3.</span> <span class="nav-text">torrent文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#trackers"><span class="nav-number">2.4.</span> <span class="nav-text">trackers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p2p"><span class="nav-number">2.5.</span> <span class="nav-text">p2p</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#p2p消息类型"><span class="nav-number">2.5.1.</span> <span class="nav-text">p2p消息类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#peer的来源"><span class="nav-number">2.5.2.</span> <span class="nav-text">peer的来源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BT中涉及到的策略"><span class="nav-number">3.</span> <span class="nav-text">BT中涉及到的策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分片选择策略"><span class="nav-number">3.1.</span> <span class="nav-text">分片选择策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-First-Piece（随机首分片）"><span class="nav-number">3.1.1.</span> <span class="nav-text">Random First Piece（随机首分片）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rarest-First（稀有优先）"><span class="nav-number">3.1.2.</span> <span class="nav-text">Rarest First（稀有优先）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strict-Priority（严格模式）"><span class="nav-number">3.1.3.</span> <span class="nav-text">Strict Priority（严格模式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Endgame-Mode"><span class="nav-number">3.1.4.</span> <span class="nav-text">Endgame Mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#choking算法"><span class="nav-number">3.2.</span> <span class="nav-text">choking算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BT扩展"><span class="nav-number">4.</span> <span class="nav-text">BT扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁力链接"><span class="nav-number">4.1.</span> <span class="nav-text">磁力链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源起"><span class="nav-number">4.1.1.</span> <span class="nav-text">源起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BT-中的磁力链接"><span class="nav-number">4.1.2.</span> <span class="nav-text">BT 中的磁力链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHT"><span class="nav-number">4.2.</span> <span class="nav-text">DHT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延伸阅读"><span class="nav-number">5.</span> <span class="nav-text">延伸阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电驴和eD2k"><span class="nav-number">5.1.</span> <span class="nav-text">电驴和eD2k</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">7.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">memoryblade</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+    
+
+  
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '7a083cbaf8863c702cf8',
+    clientSecret: 'a8faa7e0160ef6532e0354d170e1f8e966e9b251',
+    repo: 'memoryblade.github.io',
+    owner: 'memoryblade',
+    admin: ['memoryblade'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('Copy');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
