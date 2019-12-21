@@ -293,6 +293,621 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://w2yh.cc/2019/11/02/数据可视化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="memoryblade">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Memoryblade's site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/02/数据可视化/" class="post-title-link" itemprop="url">数据可视化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-02 12:24:12" itemprop="dateCreated datePublished" datetime="2019-11-02T12:24:12+08:00">2019-11-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-24 21:37:23" itemprop="dateModified" datetime="2019-11-24T21:37:23+08:00">2019-11-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h1><p><strong>直方图（Histogram）</strong>是一种可视化在连续间隔，或者是特定时间段内数据分布情况的图表，经常被用在统计学领域。简单来说，<strong>直方图描述的是一组数据的频次分布</strong>，例如把年龄分成“0-5,5-10，……，80-85”17个组，统计一下中国人口年龄的分布情况。<strong>直方图有助于我们知道数据的分布情况，诸如众数、中位数的大致位置、数据是否存在缺口或者异常值</strong>。</p>
+<h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="histogram"><a href="#histogram" class="headerlink" title="histogram"></a>histogram</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.histogram(a, bins=<span class="number">10</span>, range=<span class="keyword">None</span>, normed=<span class="keyword">None</span>, weights=<span class="keyword">None</span>, density=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数列表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>涵义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>输入数据，一个列表</td>
+</tr>
+<tr>
+<td>bins</td>
+<td>int: 区间数，默认10等分<br>list: 一个边界的列表<br>string: 一个用于计算区间宽度的函数<br></td>
+</tr>
+<tr>
+<td>range</td>
+<td>计算区间，默认是a.min() - a.max()</td>
+</tr>
+<tr>
+<td>normed</td>
+<td>废弃</td>
+</tr>
+<tr>
+<td>weights</td>
+<td>对应a中每个值的比重，只在density为false的时候有用</td>
+</tr>
+<tr>
+<td>density</td>
+<td>密度，还没搞懂怎么用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>返回值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>涵义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hist</td>
+<td>每个区间的数量</td>
+</tr>
+<tr>
+<td>bin_edges</td>
+<td>边界列表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bincount"><a href="#bincount" class="headerlink" title="bincount"></a>bincount</h3><p>这个函数是个简化版，无法指定具体的区间大小，一般不会用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.bincount(x, weights=<span class="keyword">None</span>, minlength=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数列表</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>涵义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>输入数据，一个列表</td>
+</tr>
+<tr>
+<td>weights</td>
+<td>对应a中每个值的比重，只在density为false的时候有用</td>
+</tr>
+<tr>
+<td>minlength</td>
+<td>最少的区间数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>返回值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>涵义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hist</td>
+<td>每个区间的数量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h2><h3 id="DataFrame-plot-hist"><a href="#DataFrame-plot-hist" class="headerlink" title="DataFrame.plot.hist()"></a>DataFrame.plot.hist()</h3><ul>
+<li><p>参数列表</p>
+<p><a href="https://github.com/pandas-dev/pandas/blob/master/pandas/plotting/_core.py#L504-L1533" target="_blank" rel="noopener">https://github.com/pandas-dev/pandas/blob/master/pandas/plotting/_core.py#L504-L1533</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html#pandas.DataFrame.hist" target="_blank" rel="noopener">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html#pandas.DataFrame.hist</a></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>涵义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>column</td>
+<td>需要统计的column</td>
+</tr>
+<tr>
+<td>by</td>
+<td>需要聚合的column</td>
+</tr>
+<tr>
+<td>grid</td>
+<td>需要聚合的column</td>
+</tr>
+<tr>
+<td>xlabelsize</td>
+<td>多少个区间</td>
+</tr>
+<tr>
+<td>xrot</td>
+<td>多少个区间</td>
+</tr>
+<tr>
+<td>ylabelsize</td>
+<td>多少个区间</td>
+</tr>
+<tr>
+<td>yrot</td>
+<td>多少个区间</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>x</td>
+<td>横坐标上的标签，一般是DataFrame中某个column的名称，默认为None</td>
+</tr>
+<tr>
+<td>y</td>
+<td>纵坐标上要显示的column，如果不指定column，则默认会绘制DataFrame中所有对象类型为数值型的columns，非数值对象类型的column不显示</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>选择图表类型，默认为折线图。可选参数为‘line’(折线图)、‘bar’(柱状图，竖直方向)、‘barh’(柱状图，水平方向)、‘hist’(直方图)、‘box’(箱线图)、‘kde’(核密度估计图)、‘area’(面积图)、‘pie’(饼状图)、‘scatter’(散点图)、‘hexbin’(全成为hexagonal binning，有点类似热点图，用于显示一个区域中点的个数，不过是用正六边形表示数值区域)</td>
+</tr>
+<tr>
+<td>ax</td>
+<td>matplotlib中的axes对象(可以理解为子图对象)。在多子图(使用matplotlib的subplots()函数,或者add_subplot()函数时)，可以通过该参数选择在哪个子图上绘制图形。参数默认为None</td>
+</tr>
+<tr>
+<td>subplots</td>
+<td>是否单独显示每个columns，默认为False。设置为True时，会将每个columns的数据单独在一个子图中显示</td>
+</tr>
+<tr>
+<td>sharex</td>
+<td>仅作用于”subplots”为True时，是否允许所有的子图共用同一个X轴标签。当“ax”为None时，“sharex”默认为True；当“ax”不为None，“sharex”默认为False,此时每一个子图有自己单独的X轴标签。</td>
+</tr>
+<tr>
+<td>sharey</td>
+<td>当“ax”不为None或”subplots”为True是，是否允许共用一个Y轴标签，默认为False。</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>当“subplots”为True时，用于布置图片显示布局，图片按几行、几列显示，参数为元组。</td>
+</tr>
+<tr>
+<td>figsize</td>
+<td>元组类型，设置图片尺寸。</td>
+</tr>
+<tr>
+<td>use_index</td>
+<td>是否使用DataFarme的index作为X轴标签，默认为True。当参数“x”不为None时。当DataFrame的index为非数值(包括字符串、datetime等类型)，use_index参数设置无效。</td>
+</tr>
+<tr>
+<td>title</td>
+<td>设置图标标题。</td>
+</tr>
+<tr>
+<td>grid</td>
+<td>是否显示网格线，默认为False。</td>
+</tr>
+<tr>
+<td>legend</td>
+<td>是否显示图例，默认为True，图例就是clolumn的名称。</td>
+</tr>
+<tr>
+<td>style</td>
+<td>设置线型，默认为直线。</td>
+</tr>
+<tr>
+<td>xticks</td>
+<td>设置X轴上的坐标值，需要数值型序列。</td>
+</tr>
+<tr>
+<td>yticks</td>
+<td>同”xticks”，作用于Y轴</td>
+</tr>
+<tr>
+<td>xlim</td>
+<td>设置图片中X轴数值刻度显示的区间范围，元祖类型</td>
+</tr>
+<tr>
+<td>ylim</td>
+<td>同xlim，作用于Y轴</td>
+</tr>
+<tr>
+<td>rot</td>
+<td>X/Y轴上的刻度值显示时候旋转的角度，水平绘图时旋转X轴坐标，竖直绘图时旋转Y坐标</td>
+</tr>
+<tr>
+<td>fontsize</td>
+<td>设置X/Y坐标的字体尺寸</td>
+</tr>
+<tr>
+<td>colormap</td>
+<td>设置图形显示的颜色，用matplotlib内指定的表示颜色的字符串或者colormap对象指定</td>
+</tr>
+<tr>
+<td>colorbar</td>
+<td>是否显示颜色条，仅仅在绘制有颜色条的图形时使用，如‘scatter’、‘henbin’图</td>
+</tr>
+<tr>
+<td>position</td>
+<td>仅作用于绘制柱状图时，取值范围[0,1]，用于设置X坐标显示的位置，0表示显示在最左边的柱条处，1表示显示在最右边的柱条处。</td>
+</tr>
+<tr>
+<td>sort_columns</td>
+<td>是否允许对columns的名称进行排序、决定绘图顺序</td>
+</tr>
+<tr>
+<td>scondary_y</td>
+<td>是否在第二个（一般默认指右边的Y轴）Y轴上绘图，默认为False。该参数还可以传入一个list或tuple，表示指定哪些columns在第二个Y轴上绘图。</td>
+</tr>
+<tr>
+<td>mark_right</td>
+<td>当使用第二个Y绘图时，是否允许在图例的右边加上“right”字样，表明是在第二个轴上绘图，默认是True</td>
+</tr>
+<tr>
+<td>**kwds</td>
+<td>该参数表明除去以上参数外，你可以传入matplotlib其它的绘图方法</td>
+</tr>
+</tbody>
+</table>
+<h2 id="seaborn"><a href="#seaborn" class="headerlink" title="seaborn"></a>seaborn</h2><p>基于matplotlib上的一层封装</p>
+<h2 id="pandas-pyecharts-eplot-numpy"><a href="#pandas-pyecharts-eplot-numpy" class="headerlink" title="pandas + pyecharts + eplot + numpy"></a>pandas + pyecharts + eplot + numpy</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eplot <span class="keyword">import</span> eplot</span><br><span class="line"></span><br><span class="line">df[<span class="string">'principal_payable'</span>].eplot.hist(bins=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><a href="https://pyecharts.org/#/zh-cn/intro" target="_blank" rel="noopener">https://pyecharts.org/#/zh-cn/intro</a></p>
+<p><a href="https://pyecharts.herokuapp.com/" target="_blank" rel="noopener">https://pyecharts.herokuapp.com/</a></p>
+<h2 id="plotly"><a href="#plotly" class="headerlink" title="plotly"></a>plotly</h2><ul>
+<li>Cufflinks是一个第三方的实现，对plotly的封装</li>
+<li>plotly express是官方的，等同于Cufflinks</li>
+<li>Dash——Flask, Plotly.js, and React.js</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig = px.histogram(s, x=<span class="string">"principal_payable"</span>, marginal=<span class="string">"rug"</span>, hover_data=s.columns,nbins=<span class="number">20</span>)</span><br><span class="line">fig.show()</span><br></pre></td></tr></table></figure>
+<p><a href="https://plot.ly/python/distplot/" target="_blank" rel="noopener">https://plot.ly/python/distplot/</a></p>
+<h1 id="地图数据可视化"><a href="#地图数据可视化" class="headerlink" title="地图数据可视化"></a>地图数据可视化</h1><h2 id="plotly-1"><a href="#plotly-1" class="headerlink" title="plotly"></a>plotly</h2><h2 id="百度地图"><a href="#百度地图" class="headerlink" title="百度地图"></a>百度地图</h2><h2 id="高德地图"><a href="#高德地图" class="headerlink" title="高德地图"></a>高德地图</h2>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://w2yh.cc/2019/10/28/pandas-cheat-sheet/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="memoryblade">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Memoryblade's site">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/28/pandas-cheat-sheet/" class="post-title-link" itemprop="url">pandas cheat sheet</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-28 23:32:24" itemprop="dateCreated datePublished" datetime="2019-10-28T23:32:24+08:00">2019-10-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 15:31:39" itemprop="dateModified" datetime="2019-11-20T15:31:39+08:00">2019-11-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>import numpy as np<br>import pandas as pd</p>
+</blockquote>
+<h1 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.read_csv(<span class="string">"d.csv"</span>,sep=<span class="string">','</span>,index_col=<span class="keyword">False</span>)</span><br><span class="line">excelsource=pd.read_excel(<span class="string">'111.xlsx'</span>, index_col=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="月份"><a href="#月份" class="headerlink" title="月份"></a>月份</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.date_range(start=&apos;2018/01/01&apos;, end=&apos;2018/07/01&apos;,freq=&apos;M&apos;)</span><br></pre></td></tr></table></figure>
+<h1 id="导出数据"><a href="#导出数据" class="headerlink" title="导出数据"></a>导出数据</h1><p>result.to_csv(“out.txt”)</p>
+<h1 id="显示打印行数"><a href="#显示打印行数" class="headerlink" title="显示打印行数"></a>显示打印行数</h1><p>pd.set_option(‘display.max_rows’, 20)</p>
+<h1 id="精度"><a href="#精度" class="headerlink" title="精度"></a>精度</h1><p>pd.option_context(‘display.precision’, 10)</p>
+<h1 id="打印宽度"><a href="#打印宽度" class="headerlink" title="打印宽度"></a>打印宽度</h1><p>pd.set_option(‘display.width’, 300)</p>
+<h1 id="条件修改列数据"><a href="#条件修改列数据" class="headerlink" title="条件修改列数据"></a>条件修改列数据</h1><p>result[‘res’][result[‘sum’]&lt;=0]=result[‘AMT’]<br>result[‘res’][result[‘sum’]&gt;0]=result[‘AMT’]-result[‘sum’]</p>
+<h1 id="union"><a href="#union" class="headerlink" title="union"></a>union</h1><p>pd.concat([df1,df2])</p>
+<h1 id="join"><a href="#join" class="headerlink" title="join"></a>join</h1><p>pd.merge(result,thismonthdf,on=”ACCOUNT_ID”,how=’left’)</p>
+<p>pd.merge(excelsource,dbsource,left_on=”passId”,right_on=’pass_id’,how=’left’)</p>
+<h1 id="groupby"><a href="#groupby" class="headerlink" title="groupby"></a>groupby</h1><p>dftemp.groupby(dftemp[‘LOAN_ID’]).agg({“PRODUCT_ID”:’first’,”AMT”:np.sum}).reset_index()</p>
+<p>如果reset_index时，column有同名列，就指定drop=True</p>
+<p>aaa.reset_index(drop=True)</p>
+<h1 id="sort-and-groupby"><a href="#sort-and-groupby" class="headerlink" title="sort and groupby"></a>sort and groupby</h1><p>data.sort_values(by=’occurtime’, ascending=False).groupby([‘bid’]).first()<br>data.sort_values(by=’occurtime’, ascending=False).groupby([‘bid’]).head(1)</p>
+<h1 id="对比数据差异"><a href="#对比数据差异" class="headerlink" title="对比数据差异"></a>对比数据差异</h1><p>fcore[‘test’]=0<br>result = pd.merge(asset,fcore,on=[‘LOAN_ID’,’REQUEST_ID’],how=’left’)<br>result[result[‘test’]!=0]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = pd.merge(ALL,BLACK,on=[&apos;key&apos;],how=&apos;outer&apos;)</span><br></pre></td></tr></table></figure>
+<h1 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h1><p>data21.drop_duplicates()</p>
+<p>差集</p>
+<p>subset为去重的列，keep为false表示重复的直接删掉而不是distinct</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WHITE=huaihai.append(BLACK).append(BLACK).append(GREY).append(GREY).drop_duplicates(subset=[&apos;key&apos;],keep=False)</span><br></pre></td></tr></table></figure>
+<h1 id="文件输出"><a href="#文件输出" class="headerlink" title="文件输出"></a>文件输出</h1><p>pd.DataFrame(result[result[‘res’]&gt;0], columns=[‘CUSTOMER_ID’,’ACCOUNT_ID’,’FINANCING_SOURCE’,’res’]).to_csv(“./credit/out_”+stopDate.strftime(“%Y-%m-%d”)+”.tsv”,sep=’\t’)</p>
+<h1 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h1><p>df2[df2[‘E’].isin([‘two’,’four’])]<br>bacdata[(bacdata[‘CHARGES’]&lt;0) | (bacdata[‘INTEREST’]&lt;0)]<br>b[(b[‘complete_day’]&gt;=’2019-02-27’) &amp; (b[‘complete_day’]&lt;’2019-02-28’) &amp; (b[‘timepoint’].astype(int)&lt;2)]</p>
+<h1 id="筛选-null-数据"><a href="#筛选-null-数据" class="headerlink" title="筛选 null 数据"></a>筛选 null 数据</h1><p>temp[temp[‘1’].isnull()]<br>temp[temp[‘1’].notnull()]</p>
+<h1 id="check-if-exists"><a href="#check-if-exists" class="headerlink" title="check if exists"></a>check if exists</h1><p>1094961539513730115 in fcoreData[‘LOAN_ID’].values<br>fcoreData[‘LOAN_ID’].values.tolist()</p>
+<h1 id="遍历每一行"><a href="#遍历每一行" class="headerlink" title="遍历每一行"></a>遍历每一行</h1><p>def _map(data, exp):<br>    for index, row in data.iterrows():   # 获取每行的index、row<br>        for col_name in data.columns:<br>            row[col_name] = exp(row[col_name]) # 把结果返回给data<br>    return data</p>
+<p>#遍历修改<br>for i, trial in dfTrials.iterrows():<br>    dfTrials.loc[i, “response”] = “answer {}”.format(trial[“no”])</p>
+<p><a href="https://blog.csdn.net/ls13552912394/article/details/79349809" target="_blank" rel="noopener">https://blog.csdn.net/ls13552912394/article/details/79349809</a></p>
+<p>修改某一列的值<br>b.iloc[2][‘complete_day’]=’2019-02-27’</p>
+<p>多列加和，axis表示列<br>b.apply(lambda x: int(x[‘timepoint’]) + int(x[‘branch_type’]), axis=1)</p>
+<p>#时间相关<br>today = datetime.strptime(datetime.today().strftime(“%Y-%m-%d”), ‘%Y-%m-%d’)<br>datetime.combine(row[‘CLEAR_DATE’], datetime.min.time())<br>datetime(2016,9,3).date()<br>raw_data[‘Mycol’] =  pd.to_datetime(raw_data[‘Mycol’], format=’%Y-%m-%d %H:%M:%S.%f’)</p>
+<p>math.isnan()</p>
+<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><p>%matplotlib inline<br>result.plot()</p>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>df[‘col2’] = df[‘col2’].astype(‘int’)<br>print ‘———–’<br>print df.dtypes<br>df[‘col2’] = df[‘col2’].astype(‘float64’)<br>print ‘———–’<br>print df.dtypes</p>
+<h1 id="精度问题"><a href="#精度问题" class="headerlink" title="精度问题"></a>精度问题</h1><p>555.55*100=55554.999999999<br>所以得 round 一下<br>details[‘PRINCIPAL’]=details[‘PRINCIPAL’].round()</p>
+<p>df.index.name = ‘foo’</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://w2yh.cc/2019/09/25/hadoop/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -355,7 +970,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-10-07 11:35:00" itemprop="dateModified" datetime="2019-10-07T11:35:00+08:00">2019-10-07</time>
+                <time title="Modified: 2019-11-11 10:33:06" itemprop="dateModified" datetime="2019-11-11T10:33:06+08:00">2019-11-11</time>
               
             
           </span>
@@ -1131,7 +1746,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
